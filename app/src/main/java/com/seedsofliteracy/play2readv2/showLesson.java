@@ -12,6 +12,7 @@ import android.view.ViewPropertyAnimator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -22,6 +23,8 @@ import java.io.OutputStream;
 
 import com.itsrts.pptviewer.PPTViewer;
 import com.olivephone.office.powerpoint.view.SlideView;
+import net.sf.andpdf.pdfviewer.PdfViewerActivity;
+
 
 // testing Sep 23 - 10:00 am
 // saving this as a branch Sep 23- 10:10 am
@@ -37,12 +40,10 @@ public class showLesson extends AppCompatActivity   {
     private int current_page;
     Integer pageNumber = 0;
 
-    /*PDFView pdfView;
-    private static final String TAG = showLesson.class.getSimpleName();
-    //public static final String PDFNAME = "Lesson1.pdf";
-    private String PDFPATH = null;*/
 
-    // Adding extra comment
+
+    public static final String PDFNAME = "Lesson1.pdf";
+    private String PDFPATH = null;
 
 
     @Override
@@ -51,7 +52,7 @@ public class showLesson extends AppCompatActivity   {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_lesson);
 
-        pptViewer = (PPTViewer) findViewById(R.id.pptviewer);
+        /*pptViewer = (PPTViewer) findViewById(R.id.pptviewer);
         pptViewer.setNext_img(R.drawable.next);
         pptViewer.setPrev_img(R.drawable.prev);
         pptViewer.setSettings_img(R.drawable.settings);
@@ -61,47 +62,27 @@ public class showLesson extends AppCompatActivity   {
         PPTPATH = "/data/data/" + this.getPackageName() + "/" + "databases/" ;
         String mystring = "Printing Path - " + PPTPATH ;
         System.out.println(mystring);
-
        try {
             copyPowerpoint();
         } catch (IOException e) {
             throw new Error("Error copying ppt file");
         }
 
-        pptViewer.loadPPT(this, PPTPATH + PPTNAME);
+        pptViewer.loadPPT(this, PPTPATH + PPTNAME);*/
 
 
-        /*pptViewer.setOnClickListener(new PPTViewer.OnClickListener() {
-            public void onClick(View v) {
-                switch (v.getId()) {
-                    case 1231:
-                        System.out.println("Testing 1231");
-                        break;
-                    case 1232:
-                        System.out.println("Testing 1232");
-                        break;
-                }
-
-                }
-        });*/
-
-        /*PDFPATH = "/data/data/" + this.getPackageName() + "/" + "databases/" ;
+        PDFPATH = "/data/data/" + this.getPackageName() + "/" + "databases/" ;
         try {
             copyPdf();
         } catch (IOException e) {
             throw new Error("Error copying pdf file");
         }
 
+        Intent intent = new Intent(this, MyPdfViewerActivity.class);
+        intent.putExtra(PdfViewerActivity.EXTRA_PDFFILENAME, PDFPATH+PDFNAME);
+        startActivity(intent);
 
 
-        pdfView.fromAsset(PDFNAME)
-                .defaultPage(0)
-                .onPageChange(this)
-                .enableAnnotationRendering(true)
-                .onLoad(this)
-                .scrollHandle(new DefaultScrollHandle(this))
-                .load();
-                */
 
 
     }
@@ -156,7 +137,7 @@ public class showLesson extends AppCompatActivity   {
 
     }
 
-    /*
+
     private void copyPdf() throws IOException {
         //Open your local ppt as the input stream
 
@@ -176,24 +157,4 @@ public class showLesson extends AppCompatActivity   {
 
     }
 
-
-    @Override
-    public void onPageChanged(int page, int pageCount) {
-        pageNumber = page;
-        setTitle(String.format("%s %s / %s", PDFNAME, page + 1, pageCount));
-    }
-
-    @Override
-    public void loadComplete(int nbPages) {
-        PdfDocument.Meta meta = pdfView.getDocumentMeta();
-        Log.e(TAG, "title = " + meta.getTitle());
-        Log.e(TAG, "author = " + meta.getAuthor());
-        Log.e(TAG, "subject = " + meta.getSubject());
-        Log.e(TAG, "keywords = " + meta.getKeywords());
-        Log.e(TAG, "creator = " + meta.getCreator());
-        Log.e(TAG, "producer = " + meta.getProducer());
-        Log.e(TAG, "creationDate = " + meta.getCreationDate());
-        Log.e(TAG, "modDate = " + meta.getModDate());
-    }
-    */
 }

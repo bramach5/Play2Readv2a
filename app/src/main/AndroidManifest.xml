@@ -24,6 +24,10 @@
             android:name=".showLesson"
             android:label="@string/title_activity_show_lesson" >
         </activity>
+        <activity
+            android:name=".MyPdfViewerActivity"
+            android:label="Lesson Viewer" >
+        </activity>
     </application>
 
 </manifest>
