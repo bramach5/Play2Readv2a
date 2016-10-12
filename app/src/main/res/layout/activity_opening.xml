@@ -25,22 +25,67 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <!--
     <TextView android:id="@+id/openingSentence"
         android:text="@string/opening_sentence"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+       -->
 
 
 
-    <Button android:layout_width="170dp"
+    <LinearLayout android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text= "START GAME"
+        android:orientation="horizontal">
+
+        <Button android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:text= "PLAY 2 READ"
         android:onClick="startGame"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Learn to read by playing games"/>
+        </LinearLayout>
+
+
+    <TextView android:text="\n\n"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
     <Button android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:text= "START LESSON"
+        android:text= "LEARN 2 READ"
         android:onClick="startLesson"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Learn to read with lessons"/>
+    </LinearLayout>
+
+    <TextView android:text="\n\n"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <Button android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:text= "READ 2 ME"
+        android:onClick="startRead"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="170dp"
+            android:text="Read this to me. \n Note this may incur a nominal cost"/>
+    </LinearLayout>
 
 </LinearLayout>

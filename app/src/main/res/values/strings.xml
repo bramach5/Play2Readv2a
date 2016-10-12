@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Play2Read</string>
 
-    <string name="hello">Welcome to Play2Read</string>
+    <string name="hello">Welcome to Seeds of Literacy</string>
     <string name="opening_sentence">You are now going to play a game, while learning English. If you do not know a word, please use your touchscreen to move it to the "tree", so you can get help to know more about that word </string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_show_sort_words_game_view">Sort Game</string>
@@ -9,4 +9,5 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_show_lesson">Literacy Lesson</string>
     <string name="title_activity_show_sort_words_game_controller">Sort Words Game</string>
+    <string name="title_activity_read_to_me">Read To Me</string>
 </resources>

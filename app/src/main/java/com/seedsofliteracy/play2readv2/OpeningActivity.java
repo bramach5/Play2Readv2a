@@ -33,6 +33,11 @@ public class OpeningActivity extends AppCompatActivity  {
         startActivity(intent);
     }
 
+    public void startRead(View view) {
+        Intent intent = new Intent(this, readToMe.class);
+        startActivity(intent);
+    }
+
 
 
     @Override
@@ -43,7 +48,7 @@ public class OpeningActivity extends AppCompatActivity  {
 
         //setContentView(R.layout.activity_opening_view);
 
-        mysentenceview = (TextView) findViewById(R.id.openingSentence);
+        mysentenceview = (TextView) findViewById(R.id.hello);
         mysentence = mysentenceview.getText().toString();
 
         mytos = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
