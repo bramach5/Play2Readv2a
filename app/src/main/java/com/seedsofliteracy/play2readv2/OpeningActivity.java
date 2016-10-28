@@ -39,6 +39,13 @@ public class OpeningActivity extends AppCompatActivity  {
     }
 
 
+    public void getVirtualHelp(View view) {
+        Intent intent = new Intent(this, virtualTutor.class);
+        startActivity(intent);
+    }
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

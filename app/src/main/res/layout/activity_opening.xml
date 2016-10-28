@@ -19,11 +19,13 @@
     <TextView android:id="@+id/hello"
         android:text="@string/hello"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="18sp"/>
 
-    <TextView android:text="\n\n\n"
+    <TextView android:text="\n"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
 
     <!--
     <TextView android:id="@+id/openingSentence"
@@ -35,57 +37,100 @@
 
 
     <LinearLayout android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:orientation="horizontal">
 
-        <Button android:layout_width="170dp"
+        <Button android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text= "PLAY 2 READ"
+            android:textSize="18sp"
         android:onClick="startGame"/>
+
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="match_parent" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Learn to read by playing games"/>
+            android:text="Learn to read by playing games"
+            android:textSize="18sp"/>
         </LinearLayout>
 
 
-    <TextView android:text="\n\n"
+    <TextView android:text="\n"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <LinearLayout android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:orientation="horizontal">
 
-    <Button android:layout_width="170dp"
+    <Button android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text= "LEARN 2 READ"
+        android:textSize="18sp"
         android:onClick="startLesson"/>
+
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="match_parent" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Learn to read with lessons"/>
+            android:text="Learn to read with lessons"
+            android:textSize="18sp"/>
     </LinearLayout>
 
-    <TextView android:text="\n\n"
+    <TextView android:text="\n"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <LinearLayout android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:orientation="horizontal">
 
-    <Button android:layout_width="170dp"
+    <Button android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text= "READ 2 ME"
+        android:textSize="18sp"
         android:onClick="startRead"/>
+
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="match_parent" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="170dp"
-            android:text="Read this to me. \n Note this may incur a nominal cost"/>
+            android:text="Read this to me"
+            android:textSize="18sp"/>
+    </LinearLayout>
+
+    <TextView android:text="\n"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <Button android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text= "HELP ME"
+            android:textSize="18sp"
+            android:onClick="getVirtualHelp"/>
+
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="170dp"
+            android:text="Tutor me virtually"
+            android:textSize="18sp"/>
     </LinearLayout>
 
 </LinearLayout>

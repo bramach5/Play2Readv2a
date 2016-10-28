@@ -36,6 +36,8 @@ public class sortWordsGameView  extends View {
     private int screenH;
     private int boxWidth;
     private int boxHeight;
+    private int logoWidth;
+    private int logoHeight;
     private SortGameCurriculum mySortGameWordList;
     private ArrayList<CurriculumWord> wordlist;
 
@@ -56,6 +58,9 @@ public class sortWordsGameView  extends View {
     private Intent myIntent;
     private TextToSpeech mytos;
     private String myvoicetext;
+    private float paintTextSize;
+    private int relativeX;
+    private int relativeY;
 
 
 
@@ -89,11 +94,28 @@ public class sortWordsGameView  extends View {
         Paint bpaint = new Paint();
         cpaint.setColor(Color.CYAN);
         bpaint.setColor(Color.BLACK);
-        bpaint.setTextSize(60);
+        final float scale = getContext().getResources().getDisplayMetrics().density;
+        final float GESTURE_THRESHOLD_DIP = 20.0f;
+        final int fontSize = (int) (GESTURE_THRESHOLD_DIP * scale + 0.5f);
+        bpaint.setTextSize(fontSize);
+        paintTextSize = bpaint.getTextSize();
+
+
+        // bpaint.setTextSize(60);
         points=0;
 
         Bitmap seeds = BitmapFactory.decodeResource(getResources(), R.drawable.seedslogo);
-        canvas.drawBitmap(seeds,450,100,null);
+        logoWidth = seeds.getWidth();
+        logoHeight = seeds.getHeight();
+
+        //canvas.drawBitmap(seeds,450,100,null);
+        canvas.drawBitmap(seeds,(screenW-logoWidth)/2, 5*screenH/100, null);
+        /*System.out.println("Screen width is " + screenW);
+        System.out.println("Screen height is " + screenH);
+        System.out.println("Logo width is " + seeds.getWidth());
+        System.out.println("Logo height is " + seeds.getHeight());*/
+
+
 
         for (int i=0; i<NUM_WORDS_IN_GAME; i++) {
             if (i == movingCardIdx) {
@@ -106,8 +128,8 @@ public class sortWordsGameView  extends View {
                 canvas.drawRect(tempX-bpaint.getTextSize(), tempY-bpaint.getTextSize(), tempX+boxWidth, tempY+boxHeight, cpaint );
                 canvas.drawText(tempString, tempX, tempY, bpaint);
 
-
-                if (tempX >450 && tempX < 700 && tempY > 100 && tempY < 250) {
+                // if (tempX >450 && tempX < 700 && tempY > 100 && tempY < 250) {
+                if (tempX >(screenW-logoWidth)/2 && tempX < (screenW+logoWidth)/2 && tempY > 5*screenH/100 && tempY < (5*screenH/100)+logoHeight) {
                     myvoicetext = tempString;
                     mytos.speak(myvoicetext, TextToSpeech.QUEUE_FLUSH, null);
                 }
@@ -123,6 +145,7 @@ public class sortWordsGameView  extends View {
 
                 canvas.drawRect(tempX-bpaint.getTextSize(), tempY-bpaint.getTextSize(), tempX+boxWidth, tempY+boxHeight, cpaint );
                 canvas.drawText(tempString,tempX,tempY, bpaint);
+
                 tempint = tempX;
                 tempString = "X position 2 " + tempint + tempString;
                 tempint = tempY;
@@ -136,11 +159,12 @@ public class sortWordsGameView  extends View {
         }
 
 
-        canvas.drawRect(screenW*5/100, screenH*70/100, screenW*80/100, screenH*72/100, bpaint);
+        canvas.drawRect(screenW*5/100, screenH*70/100, screenW*95/100, screenH*71/100, bpaint);
         tempString = "Words that belong to the category: " + targetCategory;
-        canvas.drawText(tempString,screenW*5/100, screenH*78/100, bpaint);
+        canvas.drawText(tempString,screenW*5/100, screenH*74/100, bpaint);
         tempString = "Points : "+ Integer.toString(points+previouspoints);
-        canvas.drawText(tempString,screenW*5/100, screenH*85/100, bpaint);
+        //canvas.drawText(tempString,screenW*5/100, screenH*85/100, bpaint);
+        canvas.drawText(tempString,screenW*5/100, screenH*80/100, bpaint);
 
         if (points+previouspoints >= targetpoints) {
             previouspoints = points+previouspoints;
@@ -165,22 +189,32 @@ public class sortWordsGameView  extends View {
                     tempX = tempCard.getCardX();
                     tempY = tempCard.getCardY();
 
-                    if (X>tempX && X<tempX+boxWidth && Y>tempY && Y<tempY+boxHeight) {
+                    if (X>tempX-paintTextSize && X<tempX+boxWidth && Y>tempY-paintTextSize && Y<tempY+boxHeight) {
                         movingCardIdx = i;
                         movingX=X;
                         movingY=Y;
+                        /*relativeX = X - tempX;
+                        relativeY = Y - tempY;*/
                     }
                 }
+
                 break;
+
             case MotionEvent.ACTION_MOVE:
                 movingX=X;
                 movingY=Y;
+                /*movingX=X-relativeX;
+                movingY=Y-relativeY;*/
                 break;
+
             case MotionEvent.ACTION_UP:
                 if (movingCardIdx > -1) {
                     tempCard = deck.get(movingCardIdx);
-                    tempCard.setX(movingX);
-                    tempCard.setY(movingY);
+                    tempCard.setX(X);
+                    tempCard.setY(Y);
+                    /*tempCard.setX(X-relativeX);
+                    tempCard.setY(Y-relativeY);*/
+
                 }
                 break;
         }

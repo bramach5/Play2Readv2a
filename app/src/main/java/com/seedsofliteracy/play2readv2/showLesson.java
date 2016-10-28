@@ -42,12 +42,13 @@ import static com.seedsofliteracy.play2readv2.R.layout.activity_show_lesson;
 // saving this as a branch Sep 23- 10:10 am
 
 
-public class showLesson extends AppCompatActivity  implements OnPageChangeListener, OnLoadCompleteListener {
+//public class showLesson extends AppCompatActivity  implements OnPageChangeListener, OnLoadCompleteListener {
+    public class showLesson extends AppCompatActivity {
 
     private PPTViewer pptViewer;
     private int numpages;
     public static final String PPTNAME = "Lesson1.ppt";
-    private String  PPTPATH = null;
+    private String PPTPATH = null;
     private int current_page;
     Integer pageNumber = 0;
     private Context myContext;
@@ -56,18 +57,40 @@ public class showLesson extends AppCompatActivity  implements OnPageChangeListen
     private TextToSpeech mytos;
     private String myString;
 
-
-
-
-    public static final String PDFNAME = "Lesson1.pdf";
+    //public static final String PDFNAME = "short o.pdf";
+    private String PDFNAME;
     private String PDFPATH = null;
+
+
+
+    public void startShort_a_Lesson(View view) {
+        Intent LaunchIntent = getPackageManager().getLaunchIntentForPackage("com.github.barteksc.sample");
+        PDFNAME = "short_a";
+        LaunchIntent.putExtra("firstKeyName", PDFNAME);
+        startActivity(LaunchIntent);
+    }
+
+    public void startShort_i_Lesson(View view) {
+        Intent LaunchIntent = getPackageManager().getLaunchIntentForPackage("com.github.barteksc.sample");
+        PDFNAME = "short_i";
+        LaunchIntent.putExtra("firstKeyName", PDFNAME);
+        startActivity(LaunchIntent);
+    }
+
+    public void startShort_o_Lesson(View view) {
+        Intent LaunchIntent = getPackageManager().getLaunchIntentForPackage("com.github.barteksc.sample");
+        PDFNAME = "short_o";
+        LaunchIntent.putExtra("firstKeyName", PDFNAME);
+        startActivity(LaunchIntent);
+    }
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(activity_show_lesson);
+        setContentView(R.layout.activity_show_lesson);
 
         /*pptViewer = (PPTViewer) findViewById(R.id.pptviewer);
         pptViewer.setNext_img(R.drawable.next);
@@ -88,12 +111,12 @@ public class showLesson extends AppCompatActivity  implements OnPageChangeListen
         pptViewer.loadPPT(this, PPTPATH + PPTNAME);*/
 
 
-        PDFPATH = "/data/data/" + this.getPackageName() + "/" + "databases/" ;
+        /*PDFPATH = "/data/data/" + this.getPackageName() + "/" + "databases/" ;
         try {
             copyPdf();
         } catch (IOException e) {
             throw new Error("Error copying pdf file");
-        }
+        }*/
 
         /*Intent intent = new Intent(this, MyPdfViewerActivity.class);
         intent.putExtra(PdfViewerActivity.EXTRA_PDFFILENAME, PDFPATH+PDFNAME);
@@ -107,14 +130,15 @@ public class showLesson extends AppCompatActivity  implements OnPageChangeListen
         intent.putExtra(PDFPATH+PDFNAME,myString);
         startActivity(intent);*/
 
-        Intent LaunchIntent = getPackageManager().getLaunchIntentForPackage("com.github.barteksc.sample");
-        startActivity( LaunchIntent );
+        //Intent LaunchIntent = getPackageManager().getLaunchIntentForPackage("com.github.barteksc.sample");
+        //LaunchIntent.putExtra("firstKeyName",PDFNAME);
+        //startActivity( LaunchIntent );
 
     }
 
 
 
-    public void displayFromAsset(String assetFileName) {
+    /*public void displayFromAsset(String assetFileName) {
 
         System.out.println("Starting File load");
         pdfView.fromAsset(PDFNAME)
@@ -179,19 +203,16 @@ public class showLesson extends AppCompatActivity  implements OnPageChangeListen
         };
 
     }
+    */
 
 
-
-
-
-        @Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
 
         getMenuInflater().inflate(R.menu.menu_show_lesson, menu);
         return true;
     }
-
 
 
     @Override
@@ -210,7 +231,7 @@ public class showLesson extends AppCompatActivity  implements OnPageChangeListen
     }
 
     // copies ppt from the assets folder to the system folder
-    private void copyPowerpoint() throws IOException {
+    /*private void copyPowerpoint() throws IOException {
         //Open your local ppt as the input stream
 
 
@@ -228,10 +249,10 @@ public class showLesson extends AppCompatActivity  implements OnPageChangeListen
         myOutput.close();
         myInput.close();
 
-    }
+    }*/
 
 
-    private void copyPdf() throws IOException {
+    /*private void copyPdf() throws IOException {
         //Open your local ppt as the input stream
 
         InputStream myInput = this.getAssets().open(PDFNAME);
@@ -248,25 +269,29 @@ public class showLesson extends AppCompatActivity  implements OnPageChangeListen
         myOutput.close();
         myInput.close();
 
-    }
+    }*/
 
+    /*
     @Override
     public void loadComplete(int i) {
         //.Meta meta = pdfView.getDocumentMeta();
-        /*Log.e(TAG, "title = " + meta.getTitle());
+        Log.e(TAG, "title = " + meta.getTitle());
         Log.e(TAG, "author = " + meta.getAuthor());
         Log.e(TAG, "subject = " + meta.getSubject());
         Log.e(TAG, "keywords = " + meta.getKeywords());
         Log.e(TAG, "creator = " + meta.getCreator());
         Log.e(TAG, "producer = " + meta.getProducer());
         Log.e(TAG, "creationDate = " + meta.getCreationDate());
-        Log.e(TAG, "modDate = " + meta.getModDate());*/
+        Log.e(TAG, "modDate = " + meta.getModDate());
 
-        //printBookmarksTree(pdfView.getTableOfContents(), "-");
-    }
+    printBookmarksTree(pdfView.getTableOfContents(), "-");
+}*/
 
+
+    /*
     @Override
     public void onPageChanged(int i, int i1) {
 
     }
+    */
 }
